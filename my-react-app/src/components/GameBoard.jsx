@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Card from './Card';
-import './App.css';
+import '../App.css';
 
 const GameBoard = () => {
   const [cards, setCards] = useState(['owl', 'sloth', 'owl', 'deer', 'giraffe', 'deer', 'giraffe', 'sloth']);
