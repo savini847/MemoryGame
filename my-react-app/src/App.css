@@ -1,12 +1,13 @@
+/* App.css - Updated version */
 :root {
-    --space-cadet: #b8c0e0;         /* Soft lavender-blue */
-    --oxford-blue: #e3e6f3;         /* Very light bluish white */
-    --prussian-blue: #a9c8dd;       /* Soft sky blue */
-    --space-cadet-2: #a3a8d3;       /* Muted periwinkle */
-    --prussian-blue-2: #7d9fcf;     /* Dusty blue */
-    --light-accent: #c6d4f2;        /* Pale baby blue */
-    --text-light: #fdfdff;          /* Near-white */
-    --pastel-beige: #f5e6cc;        /* Pastel beige */
+    --space-cadet: #b8c0e0;
+    --oxford-blue: #e3e6f3;
+    --prussian-blue: #a9c8dd;
+    --space-cadet-2: #a3a8d3;
+    --prussian-blue-2: #7d9fcf;
+    --light-accent: #c6d4f2;
+    --text-light: #fdfdff;
+    --pastel-beige: #f5e6cc;
 }
 
 body {
@@ -44,16 +45,10 @@ body {
     letter-spacing: 1px;
 }
 
-#game-container {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-}
-
 #game-board {
     display: grid;
-    grid-template-columns: repeat(4, 150px);
-    gap: 20px;
+    grid-template-columns: repeat(4, 120px);
+    gap: 15px;
     padding: 30px;
     background-color: rgba(109, 127, 200, 0.7);
     border-radius: 20px;
@@ -63,35 +58,45 @@ body {
 }
 
 .card {
-    width: 150px;
-    height: 150px;
-    background: linear-gradient(45deg, var(--space-cadet-2) 0%, var(--light-accent) 100%);
-    border-radius: 15px;
+    width: 120px;
+    height: 120px;
+    border-radius: 10px;
     cursor: pointer;
-    background-size: cover;
-    transition: all 0.4s ease;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 0;
-    color: var(--text-light);
-    border: 1px solid rgba(109, 127, 200, 0.3);
-    background-position: center;
-    background-repeat: no-repeat;
 }
 
-.card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    background: linear-gradient(45deg, var(--space-cadet) 0%, var(--light-accent) 100%);
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-front {
+    background-color: white;
+    transform: rotateY(180deg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.card-back {
+    background: linear-gradient(45deg, var(--space-cadet-2) 0%, var(--light-accent) 100%);
 }
 
 .card.flipped {
-    transform: rotateY(180deg) translateY(-6px);
-    font-size: 32px;
-    background: linear-gradient(45deg, var(--prussian-blue) 0%, var(--space-cadet-2) 100%);
-    color: var(--text-light);
+    transform: rotateY(180deg);
+}
+
+.card:hover {
+    transform: translateY(-5px) scale(1.02);
 }
 
 footer {
@@ -127,39 +132,4 @@ footer {
 .win-message button:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-
-#game-board {
-  display: grid;
-  grid-template-columns: repeat(4, 120px); /* Adjust number and size as needed */
-  gap: 10px;
-  justify-content: center;
-  margin-top: 30px;
-}
-
-.card {
-  width: 120px;
-  height: 120px;
-  background-color: #eee;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.card-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Ensures image scales and crops to fit */
-  border-radius: 10px;
-}
-
-.card-back {
-  width: 100%;
-  height: 100%;
-  background-color: #888;
-  border-radius: 10px;
 }

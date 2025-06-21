@@ -6,9 +6,12 @@ const Card = ({ value, isFlipped, onClick }) => {
     <div 
       className={`card ${isFlipped ? 'flipped' : ''}`}
       onClick={onClick}
-      style={isFlipped ? { backgroundImage: `url(images/${value}.png)` } : {}}
     >
-      {isFlipped && <span>{value}</span>}
+      <div className="card-face card-back"></div>
+      <div 
+        className="card-face card-front"
+        style={{ backgroundImage: `url(images/${value}.png)` }}
+      ></div>
     </div>
   );
 };
