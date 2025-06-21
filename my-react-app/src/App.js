@@ -1,23 +1,18 @@
-import logo from './logo.svg';
+import React from 'react';
+import TitleBanner from './components/TitleBanner';
+import GameBoard from './components/GameBoard';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <TitleBanner />
+      <div id="game-container">
+        <GameBoard />
+      </div>
+      <footer>
+        <p>© 2025 Memory Game ♥</p>
+      </footer>
     </div>
   );
 }
