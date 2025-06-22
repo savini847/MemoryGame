@@ -57,6 +57,10 @@ body {
     margin: 0 auto;
 }
 
+/* Add these updates to your existing App.css */
+
+/* Update your memory-card related styles to this: */
+
 .memory-card {
     width: 120px;
     height: 120px;
@@ -69,30 +73,39 @@ body {
 }
 
 .memory-card-face {
-    position: absolute !important;
-    width: 100% !important;
-    height: 100% !important;
-    border-radius: 10px !important;
-    backface-visibility: hidden !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
 
+/* For background-image approach: */
 .memory-card-front {
-    background-color: white !important;
-    transform: rotateY(180deg) !important;
-    background-size: contain !important;
-    background-repeat: no-repeat !important;
-    background-position: center !important;
+    transform: rotateY(180deg);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* For <img> tag approach: */
+.memory-card-front img {
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
+    border-radius: 5px;
 }
 
 .memory-card-back {
-    background: linear-gradient(45deg, var(--space-cadet-2) 0%, var(--light-accent) 100%) !important;
+    background: linear-gradient(45deg, var(--space-cadet-2) 0%, var(--light-accent) 100%);
 }
 
 .memory-card.flipped {
-    transform: rotateY(180deg) !important;
+    transform: rotateY(180deg);
 }
 
 .memory-card:hover {
