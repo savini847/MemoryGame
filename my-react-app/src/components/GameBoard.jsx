@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Card from './Card';
 import '../App.css';
 
+
 const GameBoard = ( {theme, level, onWin, onReset }) => {
   const cardTypes = {
     animal: ['owl', 'sloth', 'deer', 'giraffe', 'cat', 'elephant', 'lion', 'tiger'],
@@ -76,7 +77,7 @@ const GameBoard = ( {theme, level, onWin, onReset }) => {
   };
 
   return (
-    <div id = "game-board-container">
+    <div className="container text-center" id="game-board-container">
       <div id="game-board">
         {cards.map((card) => (
           <Card
@@ -88,14 +89,13 @@ const GameBoard = ( {theme, level, onWin, onReset }) => {
         ))}
       </div>
 
-      <div className = "game-controls">
-        <button onClick = {onReset} className = "button">
+      <div className="game-controls d-flex justify-content-center gap-3 mt-3 mb-4">
+        <button className="btn custom-btn" onClick={onReset}>
           New Game
         </button>
       </div>
     </div>
-
-  );
-};
+  )
+}
 
 export default GameBoard;

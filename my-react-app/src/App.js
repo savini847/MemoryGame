@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import TitleBanner from './components/TitleBanner';
 import GameBoard from './components/GameBoard';
 import StartScreen from './components/StartScreen';
-
 import './App.css';
 
 function App() {
@@ -30,14 +29,9 @@ function App() {
     setGameWon(false);
   }
 
-
-
-
-
-
   return (
     <div className="App">
-      <TitleBanner />
+      <TitleBanner/> 
 
       {!gameStarted && !gameWon && (
         <StartScreen onStart = {handleStart} />
@@ -53,16 +47,20 @@ function App() {
       )}
 
       {gameWon && (
-        <div className = "win-message">
-          <h2>You won!</h2>
-          <button onClick = {handleReset}>Play Again</button>
+        <div className="d-flex justify-content-center align-items-center my-5">
+          <div className = "win-message">
+            <h2>You won!</h2>
+            <button className = "btn custom-btn" onClick = {handleReset}>
+              Play Again
+            </button>
+          </div>
         </div>
       )}
 
       <footer>
         <p>© 2025 Memory Game ♥</p>
       </footer>
-    </div>
+      </div>
   );
 }
 

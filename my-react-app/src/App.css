@@ -14,7 +14,6 @@ body {
     font-family: 'Arial', sans-serif;
     display: flex;
     flex-direction: column;
-    align-items: center;
     min-height: 100vh;
     margin: 0;
     background: var(--pastel-beige);
@@ -23,7 +22,6 @@ body {
 .App {
     display: flex;
     flex-direction: column;
-    align-items: center;
     width: 100%;
     min-height: 100vh;
 }
@@ -49,15 +47,17 @@ body {
     display: grid;
     grid-template-columns: repeat(4, 120px);
     gap: 15px;
+    width: fit-content;
     padding: 30px;
     background-color: rgba(109, 127, 200, 0.7);
     border-radius: 20px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.15);
     margin-bottom: 30px;
     border: 1px solid rgba(109, 127, 200, 0.25);
+    margin: 0 auto;
 }
 
-.card {
+.memory-card {
     width: 120px;
     height: 120px;
     border-radius: 10px;
@@ -68,34 +68,34 @@ body {
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-.card-face {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    backface-visibility: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.memory-card-face {
+    position: absolute !important;
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 10px !important;
+    backface-visibility: hidden !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 }
 
-.card-front {
-    background-color: white;
-    transform: rotateY(180deg);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+.memory-card-front {
+    background-color: white !important;
+    transform: rotateY(180deg) !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
 }
 
-.card-back {
-    background: linear-gradient(45deg, var(--space-cadet-2) 0%, var(--light-accent) 100%);
+.memory-card-back {
+    background: linear-gradient(45deg, var(--space-cadet-2) 0%, var(--light-accent) 100%) !important;
 }
 
-.card.flipped {
-    transform: rotateY(180deg);
+.memory-card.flipped {
+    transform: rotateY(180deg) !important;
 }
 
-.card:hover {
+.memory-card:hover {
     transform: translateY(-5px) scale(1.02);
 }
 
@@ -118,21 +118,31 @@ footer {
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
-.win-message button {
-    padding: 10px 20px;
+.custom-btn {
     background: linear-gradient(45deg, var(--space-cadet) 0%, var(--prussian-blue-2) 100%);
-    color: white;
-    border: none;
+    border: none !important;;
+    color: white !important;;
     border-radius: 5px;
-    cursor: pointer;
     font-size: 1rem;
-    margin-top: 15px;
-}
-
-.win-message button:hover {
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .custom-btn:hover:not(:disabled) {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
+  }
+  
+  .custom-btn:disabled {
+    background: linear-gradient(45deg, var(--space-cadet) 0%, var(--prussian-blue-2) 100%);
+    color: white;
+    cursor: not-allowed;
+    opacity: 1;
+    transform: none;
+    box-shadow: none;
+  }
+
 
 .start-screen {
     display: flex;
@@ -154,15 +164,4 @@ select {
     margin-left: 10px;
     padding: 5px;
     font-size: 16px;
-}
-  
-.button {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
 }
