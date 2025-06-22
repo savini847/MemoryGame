@@ -2,28 +2,41 @@ import React, { useState, useEffect } from 'react';
 import Card from './Card';
 import '../App.css';
 
-const GameBoard = () => {
-  const cardTypes = ['owl', 'sloth', 'deer', 'giraffe'];
+const GameBoard = ( {theme, level, onWin, onReset }) => {
+  const cardTypes = {
+    animal: ['owl', 'sloth', 'deer', 'giraffe', 'cat', 'elephant', 'lion', 'tiger'],
+    nature: ['beach', 'cloud', 'flower', 'forest', 'mountain', 'ocean', 'sun', 'tree']
+  }
+
+  //initalize easy, medium, and hard levels with 4, 6, 8 pairs respectively
+  const levels = {
+    easy: 4, //4 pairs 
+    medium: 6, //6 pairs
+    hard: 8, //8 pairs
+  }
+
   const [cards, setCards] = useState([]);
   const [flippedCards, setFlippedCards] = useState([]);
   const [matchedCards, setMatchedCards] = useState([]);
   const [disabled, setDisabled] = useState(false);
-  const [gameWon, setGameWon] = useState(false);
 
   // Initialize game
   useEffect(() => {
-    const initialCards = [...cardTypes, ...cardTypes]
+    const pairCount = levels[level];
+    const selected = cardTypes[theme].slice(0, pairCount);
+    const initialCards = [...selected, ...selected]
       .sort(() => Math.random() - 0.5)
       .map((card, index) => ({ id: index, type: card }));
     setCards(initialCards);
-  }, []);
+  }, [theme, level]);
 
   // Check for win condition
   useEffect(() => {
-    if (matchedCards.length === cardTypes.length * 2) {
-      setGameWon(true);
+    const totalPairs = levels[level]
+    if (matchedCards.length === totalPairs * 2) {
+      onWin();
     }
-  }, [matchedCards, cardTypes.length]);
+  }, [matchedCards, level, onWin]);
 
   const handleCardClick = (id) => {
     // Don't allow clicks if:
@@ -62,40 +75,26 @@ const GameBoard = () => {
     setDisabled(false);
   };
 
-  const resetGame = () => {
-    setCards([]);
-    setFlippedCards([]);
-    setMatchedCards([]);
-    setDisabled(false);
-    setGameWon(false);
-    
-    // Reinitialize game
-    const initialCards = [...cardTypes, ...cardTypes]
-      .sort(() => Math.random() - 0.5)
-      .map((card, index) => ({ id: index, type: card }));
-    setCards(initialCards);
-  };
-
-  if (gameWon) {
-    return (
-      <div className="win-message">
-        <h2>You won!</h2>
-        <button onClick={resetGame}>Play Again</button>
-      </div>
-    );
-  }
-
   return (
-    <div id="game-board">
-      {cards.map((card) => (
-        <Card
-          key={card.id}
-          value={card.type}
-          isFlipped={flippedCards.includes(card.id) || matchedCards.includes(card.id)}
-          onClick={() => handleCardClick(card.id)}
-        />
-      ))}
+    <div id = "game-board-container">
+      <div id="game-board">
+        {cards.map((card) => (
+          <Card
+            key={card.id}
+            value={card.type}
+            isFlipped={flippedCards.includes(card.id) || matchedCards.includes(card.id)}
+            onClick={() => handleCardClick(card.id)}
+          />
+        ))}
+      </div>
+
+      <div className = "game-controls">
+        <button onClick = {onReset} className = "button">
+          New Game
+        </button>
+      </div>
     </div>
+
   );
 };
 
