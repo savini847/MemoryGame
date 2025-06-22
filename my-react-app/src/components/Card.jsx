@@ -10,7 +10,7 @@ const Card = ({ value, isFlipped, onClick }) => {
       <div className="memory-card-face memory-card-back"></div>
       <div 
         className="memory-card-face memory-card-front"
-        style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/images/${value}.png)` }}
+        style={{ backgroundImage: `url(images/${value}.png)` }}
       ></div>
     </div>
   );
